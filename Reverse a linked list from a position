@@ -1,0 +1,26 @@
+class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if(head==NULL){
+            return head;
+        }
+        else{
+            vector<int>v;
+        
+            ListNode* temp = head;
+            while(temp){
+                v.push_back(temp->val);
+                temp = temp->next;
+            }
+
+            reverse(v.begin()+left-1,v.begin()+right);
+            temp = head;
+            
+            for(auto i:v){
+                temp->val = i;
+                temp = temp->next;
+            }
+            return head;
+        }
+    }
+};
