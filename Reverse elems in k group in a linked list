@@ -1,3 +1,5 @@
+Solution for problem when the left out elements which are not in a group of k should be left as it is.
+
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
@@ -12,6 +14,36 @@ public:
         }
     
     
+        ListNode* prev=NULL;
+        ListNode* curr= head;
+        ListNode* next= head;
+        
+        int count=0;
+     
+     while(curr!=NULL && count<k){                                 TC----> O(N)
+                                                                   SC---->O(N)
+       next= curr->next;
+       curr->next= prev;
+        prev= curr;
+        curr=next;
+        count++;
+          }
+      if(next!=NULL){
+        head->next= reverseKGroup(next, k);  
+        }
+        return prev;
+    }
+};
+
+Solution for the problem in which nodes other than group of k should also be reversed
+
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+    
+    if(head==NULL)
+          return NULL;
+      
         ListNode* prev=NULL;
         ListNode* curr= head;
         ListNode* next= head;
